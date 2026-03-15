@@ -9,15 +9,34 @@
  * IMPORTANT: Never remove this file during upstream sync. Preserve all custom tools.
  */
 
-import type {ToolDefinition} from '../tools/ToolDefinition.js';
+import type {DefinedPageTool, ToolDefinition} from '../tools/ToolDefinition.js';
+
+import {
+  enableReactDebug,
+  getPropDiffs,
+  getReactComponentTree,
+  getReactDebugStatus,
+  getReactRenderEvents,
+  getReactRenderTimeline,
+  getRenderCauses,
+  getRenderDependencyGraph,
+  getStateUpdates,
+} from '../tools/react.js';
 
 /**
  * Returns custom tools for React DevTools MCP.
  * Add your React-specific debugging tools here.
  */
-export function getCustomTools(): ToolDefinition[] {
+export function getCustomTools(): (ToolDefinition | DefinedPageTool)[] {
   return [
-    // Add custom React DevTools tools here.
-    // Example: ...reactComponentTools,
+    enableReactDebug,
+    getReactComponentTree,
+    getReactDebugStatus,
+    getReactRenderEvents,
+    getReactRenderTimeline,
+    getPropDiffs,
+    getStateUpdates,
+    getRenderCauses,
+    getRenderDependencyGraph,
   ];
 }

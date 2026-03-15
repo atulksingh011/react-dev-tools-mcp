@@ -10,6 +10,11 @@ This document tracks all customizations made to the upstream [chrome-devtools-mc
 |------|---------|
 | `src/extensions/index.ts` | Extension point for custom MCP tools |
 | `src/tools/tools.ts` | Modified: imports `getCustomTools`, merges custom tools |
+| `src/tools/react.ts` | React debugging MCP tools |
+| `src/injected/react-debug-bootstrap.ts` | Bootstrap script for React DevTools hook |
+| `tests/tools/react.test.ts` | Tests for React tools |
+| `docs/react-debugging.md` | React debugging architecture and usage |
+| `docs/REACT_DEBUG_TOOLS_AI_GUIDE.md` | AI agent guide: when to call tools, params, response shapes |
 | `docs/SYNC_MAINTENANCE.md` | Upstream sync maintenance workflow |
 | `docs/CUSTOM_CHANGES.md` | This file — change tracking |
 | `scripts/sync-from-upstream.sh` | Sync automation script |

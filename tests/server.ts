@@ -4,11 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import fs from 'node:fs';
 import http, {
   type IncomingMessage,
   type Server,
   type ServerResponse,
 } from 'node:http';
+import path from 'node:path';
 import {before, after, afterEach} from 'node:test';
 
 import {html} from './utils.js';
@@ -60,13 +62,23 @@ export class TestServer {
   }
 
   addRoute(
-    path: string,
+    routePath: string,
     handler: (req: IncomingMessage, res: ServerResponse) => void,
   ) {
-    if (this.#routes[path]) {
-      throw new Error(`Route ${path} was already setup.`);
+    if (this.#routes[routePath]) {
+      throw new Error(`Route ${routePath} was already setup.`);
     }
-    this.#routes[path] = handler;
+    this.#routes[routePath] = handler;
+  }
+
+  addFileRoute(routePath: string, filePath: string, contentType: string) {
+    const absolutePath = path.resolve(filePath);
+    this.addRoute(routePath, (_req: IncomingMessage, res: ServerResponse) => {
+      const content = fs.readFileSync(absolutePath, 'utf-8');
+      res.setHeader('Content-Type', contentType);
+      res.statusCode = 200;
+      res.end(content);
+    });
   }
 
   #handle(req: IncomingMessage, res: ServerResponse) {
