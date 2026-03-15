@@ -1,6 +1,22 @@
-# Chrome DevTools MCP
+# React DevTools MCP
+
+> **Fork of [Chrome DevTools MCP](https://github.com/ChromeDevTools/chrome-devtools-mcp)** — Extended with React-specific debugging tools and custom extensions.
 
 [![npm chrome-devtools-mcp package](https://img.shields.io/npm/v/chrome-devtools-mcp.svg)](https://npmjs.org/package/chrome-devtools-mcp)
+
+## Upstream Sync
+
+This repo stays synchronized with upstream. See [docs/SYNC_MAINTENANCE.md](./docs/SYNC_MAINTENANCE.md) for the maintenance workflow and [docs/CUSTOM_CHANGES.md](./docs/CUSTOM_CHANGES.md) for tracked customizations.
+
+```bash
+# Add upstream remote (one-time)
+git remote add upstream https://github.com/ChromeDevTools/chrome-devtools-mcp.git
+
+# Sync from upstream
+./scripts/sync-from-upstream.sh rebase
+```
+
+---
 
 `chrome-devtools-mcp` lets your coding agent (such as Gemini, Claude, Cursor or Copilot)
 control and inspect a live Chrome browser. It acts as a Model-Context-Protocol

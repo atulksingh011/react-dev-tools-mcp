@@ -6,6 +6,7 @@
 
 import type {ParsedArguments} from '../bin/chrome-devtools-mcp-cli-options.js';
 
+import {getCustomTools} from '../extensions/index.js';
 import * as consoleTools from './console.js';
 import * as emulationTools from './emulation.js';
 import * as extensionTools from './extensions.js';
@@ -23,7 +24,7 @@ import * as snapshotTools from './snapshot.js';
 import type {ToolDefinition} from './ToolDefinition.js';
 
 export const createTools = (args: ParsedArguments) => {
-  const rawTools = args.slim
+  const baseRawTools = args.slim
     ? Object.values(slimTools)
     : [
         ...Object.values(consoleTools),
@@ -40,6 +41,9 @@ export const createTools = (args: ParsedArguments) => {
         ...Object.values(scriptTools),
         ...Object.values(snapshotTools),
       ];
+
+  const customTools = args.slim ? [] : getCustomTools();
+  const rawTools = [...baseRawTools, ...customTools];
 
   const tools = [];
   for (const tool of rawTools) {

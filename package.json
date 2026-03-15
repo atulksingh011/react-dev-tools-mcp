@@ -1,7 +1,7 @@
 {
-  "name": "chrome-devtools-mcp",
+  "name": "react-dev-tools-mcp",
   "version": "0.20.0",
-  "description": "MCP server for Chrome DevTools",
+  "description": "MCP server for Chrome DevTools with React DevTools extensions",
   "type": "module",
   "bin": {
     "chrome-devtools-mcp": "./build/src/bin/chrome-devtools-mcp.js",
